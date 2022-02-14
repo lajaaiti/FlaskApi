@@ -11,6 +11,7 @@ import requests
 import Model.model as model
 # import beautifulsoup4
 from bs4 import BeautifulSoup
+import pandas as pd
 
 # creation de l'application
 app = Flask(__name__)
@@ -19,31 +20,29 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return ("Hello World!")
-
-# instancier une bdd sqlite 
-db = sqlite3.connect('database.db')
-
-
-# création d'une table text et user avec sql alchemy
-class Text(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String(200))
-    def __init__(self, text):
-        self.text = text
-        
-
-
 # webscrapping avec bs4
 url = "http://feeds.bbci.co.uk/news/rss.xml"
 
 response = requests.get(url)
 soup = BeautifulSoup(response.text, "html.parser") 
-items = soup.find_all("item")
+items = soup.findAll("item")
 item = items[0]
-item.title.text
+item.title.text 
 item.description.text
 item.pubDate.text
-item.link.text
+
+news_items = []
+for i in items:
+    news_i = {}
+    news_i["title"] = i.title.text
+    news_i["description"] = i.description.text
+    news_i["pubDate"] = i.pubDate.text
+    news_items.append(news_i)
+    
+df = pd.DataFrame(news_items, columns=["title", "description", "pubDate"])
+df.to_csv("news.csv", index=False)
+   
+    
  
 
 
