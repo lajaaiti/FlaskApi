@@ -10,7 +10,7 @@ def home():
     return template_rendered('index.html')
 
 
-
+app.run(debug=True)
     
     
 
