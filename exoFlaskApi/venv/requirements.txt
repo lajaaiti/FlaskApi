@@ -1,17 +1,3 @@
-pip install flask-sqlalchemy
-pip install flask-migrate
-pip install flask-login
-pip install flask-wtf
-pip install flask-bootstrap
-pip install flask-moment
-pip install flask-babel
-pip install flask-mail
-pip install flask-uploads
-pip install flask-pagedown
-pip install flask-whooshalchemy
-pip install flask-babel
-pip install flask-cache
-pip install flask-whooshalchemy
-
-pip instatt venv/lib/python3/site-packages/flask-whooshalchemy
-
+pip install -r requirements.txt
+pip install flask
+pip install venv 
