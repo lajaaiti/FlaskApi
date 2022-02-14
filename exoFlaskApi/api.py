@@ -8,7 +8,13 @@ app = Flask(__name__)
 # définition de la route
 @app.route('/')
 def home():
-    return template_rendered('template/index.html')
+    return ("coucouc.!")
+
+# instancier un scraper
+@app.route('/scraper')
+def scraper():
+    return ("scraper")
+
 
 # run application
 app.run(debug=True)
