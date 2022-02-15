@@ -24,42 +24,6 @@ def home():
 
 
 
-# webscrapping avec bs4
-url = "http://feeds.bbci.co.uk/news/rss.xml"
-
-response = requests.get(url)
-soup = BeautifulSoup(response.text, "html.parser") 
-items = soup.findAll("item")
-item = items[0]
-item.title.text 
-item.description.text
-item.pubDate
-
-news_items = []
-for i in items:
-    news_i = {}
-    news_i["title"] = i.title.text
-    news_i["description"] = i.description.text
-    news_i["pubDate"] = i.pubDate
-    news_items.append(news_i)
-    
-df = pd.DataFrame(news_items, columns=["title", "description", "pubDate"])
-df.to_csv("news.csv", index=False, encoding="utf-8")
-   
-    
-# creation de la base de données sqlite
-sqlite_file = 'database.sqlite'
-
-# creattion des tables sqlite
-conn = sqlite3.connect(sqlite_file)
-
-
-
-
-
-
-
-
 
 
 
